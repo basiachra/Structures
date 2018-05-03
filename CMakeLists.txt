@@ -3,5 +3,5 @@ project(Structures)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCE_FILES SkipList.cpp)
+set(SOURCE_FILES SkipList/SkipList.cpp)
 add_executable(Structures ${SOURCE_FILES})
