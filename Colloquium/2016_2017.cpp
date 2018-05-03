@@ -7,14 +7,18 @@
 using namespace std;
 
 
-//2. Dana jest struktura struct HTf int* table; int size; g, która opisuje tablice haszujaca
-//rozmiaru size, przechowujaca liczby nieujemne. Tablica korzysta z funkcji haszujacej int
-//hash(int x) i liniowego rozwiazywania konfliktów (ujemne wartosci w tablicy table oznaczaja
-//                                                  wolne pola). Doskonałoscia takiej tablicy nazywamy liczbe elementów x takich, ze pozycja x w
-//        tablicy to hash(x) mod size (a wiec x jest na ”swojej” pozycji). Prosze napisac funkcje:
-//void enlarge( HT* ht);
-//która powieksza tablice dwukrotnie i wpisuje elementy w takiej kolejnosci, by doskonałosc
-//        powstałej tablicy była jak najwieksza. Funkcja powinna byc mozliwie jak najszybsza.
+//2.Dana jest struktura HT, która opisuje tablicę haszującą rozmiaru size, przechowywującą liczby nieujemne:
+//
+//struct HT {
+//    int* table;
+//    int size;
+//};
+//Tablica korzysta z funkcji haszującej int hash(int x) i liniowego rozwiązywania konfliktów (ujemne wartości w tablicy table oznaczają wolne pola).
+//
+//Doskonałością takiej tablicy nazywamy liczbę elementów x takich, że pozycja x w tablicy to hash(x) % size (a więc x jest na "swojej" pozycji).
+//
+//Proszę napisać funkcję void enlarge(HT* ht), która powiększa tablicę dwukrotnie i wpisuje elementy w takiej kolejności, by doskonałość powstałej
+//        tablicy była największa. Funkcja powinna być możliwie najszybsza.
 
 
 //3. Dany jest ciag klocków (k1, ..., kn). Klocek ki zaczyna sie na pozycji ai i ciagnie sie do pozycji bi
