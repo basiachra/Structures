@@ -16,6 +16,9 @@ using namespace std;
 //        najszybszy. Ocenie podlega poprawność i efektywność algorytmu (1pkt) oraz poprawność oszacowania
 //        złożoności czasowej (1pkt).
 
+//Złożoność O(logn + d)
+//Wyszukuje wartość x i zapamiętuję poprzednika, wyszukuje następnika y i przepinam i usuwam za pomocą remove 
+
 //[2pkt.] Zadanie 4. Dany jest graf G = (V, E), którego wierzchołki reprezentują punkty nawigacyjne nad
 //        Bajtocją, a krawędzie reprezentują korytarze powietrzne między tymi punktami. Każdy korytarz
 //powietrzny ei ∈ E powiązany jest z optymalnym pułapem przelotu pi ∈ N (wyrażonym w metrach).
