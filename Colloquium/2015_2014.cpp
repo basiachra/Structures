@@ -7,3 +7,5 @@
 //Set createSet( string A[], int n ), która tworzy Set z n-elementowej tablicy stringów
 //        oraz bool contains( Set a, string s ), która sprawdza czy dana liczba jest w Secie.
 //Oszacuj złozonosc czasowa i pamieciowa powyzszych funkcji.
+
+//tworzymy HashTable, która za pomocą getHash zamienia stringi na liczby, przechowując je w ten sposób w tablicy rozproszonej
