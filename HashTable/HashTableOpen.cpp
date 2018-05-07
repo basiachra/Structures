@@ -37,7 +37,7 @@ int findindex(HashTable * HT, Data * data, bool sokl)//so keep looking
     {
         if (HT->data[x] == data && HT->status[x] == taken) return x;
         if (HT->status[x] == freeToGo) return x;
-        if (HT->status[x] == keep_looking && sokl == true) return x;
+        if (HT->status[x] == keep_looking && sokl == false) return x;
 
         x = (x + 1) % HT->size;
         i++;
@@ -65,10 +65,9 @@ void insert(HashTable * HT, Data * data)
     if (index == -1) return;
 
 
-    if(HT->status[index] == taken){
-        HT->data[index] = data;
-        return true;
-    }
+    HT->status[index] = taken;
+    HT->data[index] = data;
+
 
 
 }

@@ -109,7 +109,7 @@ void remove(SkipList S, int key)
         if(tmp->next[i]->value == key)
         {
             del = tmp->next[i];
-            tmp->next[i] = del->next[i];
+            tmp = del->next[i];
         }
     }
 
