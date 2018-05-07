@@ -11,7 +11,7 @@
 //Proszę zaimplementować funkcję int countInterval(BST *T, int a, int b), która oblicza ile liczb z zadanego przedziału
 //domkniętego [a,b] znajduje się w drzewie T.
 //
-2.
+//2.
 //Dana jest struktura danych opisująca tab hasz, która przechowuje liczby
 //typu int indeksowane napisami:
 //

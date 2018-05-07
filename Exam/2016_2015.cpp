@@ -21,7 +21,8 @@ struct Tree{
 	int longest_path, longest_path_to_root;	//najdluzsza sciezka w poddrzewie(lacznie z tym wezlem), najdluzsza sciezka do tego wezla
 }
 
-W kazdym wezle uzupelniam informacje o najdluzszej sciezce prowadzacej do tego wezla, oraz najdluzszej sciezce w drzewie zakorzenionym w tym wezle.
+//W kazdym wezle uzupelniam informacje o najdluzszej sciezce prowadzacej do tego wezla,
+//		oraz najdluzszej sciezce w drzewie zakorzenionym w tym wezle.
 
 int longestPath(Tree* proot){
     updateTreeInformatins(proot);

@@ -7,6 +7,7 @@
 //wartość znajdującą się w tym zbiorze. Proszę wybrać
 //optymalną strukturę ( (niekoniecznie) korzystając ze struktur poznanych na zajęciach), która spełni
 //postawiony warunek. Proszę opisać wybrane przez siebie rozwiązanie.
+
 //2. Mamy daną listę 200 000 nazwisk, należy założyć, że nazwiska składają się tylko z małych
 //liter alfabetu łacińskiego i ich długość nie przekracza 15. Zaproponuj i zaimplementuj funkcję haszującą
 // wraz z funkcją rozwiązywania kolizji tak, aby przechowywać efektywnie tę listę w tablicy haszującej.
