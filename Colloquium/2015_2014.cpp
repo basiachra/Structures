@@ -16,12 +16,8 @@ using namespace std;
 
 enum Status { freeToGo, taken };
 
-struct Data {
-    int value;
-};
-
 struct Set {
-    Data ** data;
+    int *data;
     Status * status;
     int size;
 };
@@ -36,8 +32,8 @@ int frombinaryto10(int n){
     }
     return decimalNumber;
 }
-int getHash(Data * data){
-    data->value;
+int getHash(int data){
+   return data;
 }
 void view(Set *HT){
     //wyswietlenie HashTable
@@ -45,11 +41,11 @@ void view(Set *HT){
     {
         if (HT->data[i] != NULL)
         {
-            cout << HT->data[i]->value <<endl;
+            cout << HT->data[i] <<endl;
         }
     }
 }
-int findindex(Set * HT, Data * data, bool sokl)//so keep looking
+int findindex(Set * HT, int data)//so keep looking
 {
     Status status;
     int x = getHash(data);
@@ -66,22 +62,27 @@ int findindex(Set * HT, Data * data, bool sokl)//so keep looking
     return -1;
 }
 //dodawanie adresowanie otwarte
-void insert(Set * HT, Data * data)
+void insert(Set * HT, int data)
 {
     //ustalanie indeksu
-    int index = findindex(HT, data, false); //dodawanie gdy status == keep looking lub free więc sokl == true
-    if (index == -1) return;
+    int index = findindex(HT, data);
+    if (index == -1){
+        cout<<"ERROR"<<endl;
+        return;
+    }
 
 
     HT->status[index] = taken;
     HT->data[index] = data;
+    cout<<"Dodany"<<endl;
+
 }
 
 void createinsertData(Set *HT, string A[], int n){
 
     for(int i=0;i<n;i++){
-        Data *data =new Data;
-        data->value=frombinaryto10(stoi(A[i]));////czemu mi się tu wykrzacza
+        int data;
+        data=frombinaryto10(stoi(A[i]));////czemu mi się tu wykrzacza
         insert(HT,data);
     }
 }
@@ -91,14 +92,17 @@ void createinsertData(Set *HT, string A[], int n){
 Set createSet(string A[], int n){
     Set * HT = new Set;
     HT->size = n;
-    HT->data = new Data *[HT->size];
+    HT->data = new int [HT->size];
 
     //ustawianie wszystkich pól na NULL
     for (int i = 0; i < HT->size; i++) {
         HT->data[i] = NULL;
         HT->status[i] = freeToGo;
     }
-    createinsertData(HT,A,n);
+
+    int data=6;
+    insert(HT,data);
+   // createinsertData(HT,A,n);
     view(HT);
 }
 
@@ -106,10 +110,9 @@ Set createSet(string A[], int n){
 //szukanie adresowanie otwarte
 bool contains( Set *a, string s )  // w temacie zadania jest bez
 {
-    Data *data= new Data;
-    data->value=frombinaryto10(stoi(s));
+    int data=frombinaryto10(stoi(s));
 
-    int index = findindex(a, data, true);
+    int index = findindex(a, data);
     if (index == -1) return false;
 
     if (a->status[index] == taken && a->data[index] == data) return true;

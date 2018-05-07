@@ -2,7 +2,7 @@
 // Created by Karolina on 11.04.2018.
 //
 
-#include "stdafx.h"
+
 #include <iostream>
 using namespace std;
 
@@ -143,6 +143,6 @@ int main()
     //if (find(HT, data4)) cout << "got it!!" << endl;
     //else cout << "couldn't find it ;c" << endl;
 
-    system("pause");
+//    system("pause");
     return 0;
 }

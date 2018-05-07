@@ -3,5 +3,5 @@ project(Structures)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCE_FILES Colloquium/2015_2014.cpp)
+set(SOURCE_FILES Exam/2014_2013.cpp)
 add_executable(Structures ${SOURCE_FILES})
