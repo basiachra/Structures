@@ -3,5 +3,5 @@ project(Structures)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCE_FILES Trees/DistanceBST.cpp)
+set(SOURCE_FILES Trees/IdenticalTrees.cpp)
 add_executable(Structures ${SOURCE_FILES})

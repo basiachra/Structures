@@ -8,14 +8,14 @@ struct BSTnode{
     int value;
 };
 
-BSTnode * findNode(BSTnode * root, int value){
+BSTnode * findBSTnode(BSTnode * root, int value){
     if(root == NULL) return NULL;
     if(root->value == value) return root;
-    else if(value < root->value) return findNode(root->left,value);
-    else return findNode(root->right,value);
+    else if(value < root->value) return findBSTnode(root->left,value);
+    else return findBSTnode(root->right,value);
 }
 
-void addNode(BSTnode *& root, int value){
+void addBSTnode(BSTnode *& root, int value){
     BSTnode * tmp = new BSTnode;
     tmp->value = value;
     tmp->left = tmp->right = tmp->parent = NULL;
@@ -44,6 +44,10 @@ int getMin(BSTnode * root){
     return root->value;
 }
 
+BSTnode *getMinNode(BSTnode * root){
+    while(root->left != NULL) root = root->left;
+    return root;
+}
 int getMax(BSTnode * root){
     while(root->right != NULL) root = root->right;
     return root->value;
@@ -106,7 +110,7 @@ double avarge2(BSTnode * T, double & count, double & sum){
 	if(T->parent == NULL) return sum / count;
 }
 
-BSTnode * getNode(BSTnode *& root, BSTnode * z){
+BSTnode * getBSTnode(BSTnode *& root, BSTnode * z){
     BSTnode * y, * x;
     if(z->left == NULL || z->right == NULL) y = z;
     else y = succ(z);
@@ -136,18 +140,66 @@ void printBST(BSTnode * root){
     }
 }
 
+//https://www.geeksforgeeks.org/binary-search-tree-set-2-delete/
+BSTnode* deleteBSTnode(BSTnode* root, int value)
+{
+    // base case
+    if (root == NULL) return root;
+
+    // If the value to be deleted is smaller than the root's value,
+    // then it lies in left subtree
+    if (value < root->value)
+        root->left = deleteBSTnode(root->left, value);
+
+        // If the value to be deleted is greater than the root's value,
+        // then it lies in right subtree
+    else if (value > root->value)
+        root->right = deleteBSTnode(root->right, value);
+
+        // if value is same as root's value, then This is the node
+        // to be deleted
+    else
+    {
+        // node with only one child or no child
+        if (root->left == NULL)
+        {
+            BSTnode *temp = root->right;
+            free(root);
+            return temp;
+        }
+        else if (root->right == NULL)
+        {
+            BSTnode *temp = root->left;
+            free(root);
+            return temp;
+        }
+
+        // node with two children: Get the inorder successor (smallest
+        // in the right subtree)
+        BSTnode* temp = getMinNode(root->right);
+
+        // Copy the inorder successor's content to this node
+        root->value = temp->value;
+
+        // Delete the inorder successor
+        root->right = deleteBSTnode(root->right, temp->value);
+    }
+    return root;
+}
+
+
 int main(){
     BSTnode * tree = NULL;
-    addNode(tree,15);
-    addNode(tree,11);
-    addNode(tree,20);
-    addNode(tree,7);
-    addNode(tree,12);
-    addNode(tree,19);
-    addNode(tree,30);
-    addNode(tree,8);
-    BSTnode * finded = findNode(tree,20);
-    BSTnode * removed = getNode(tree,finded);
+    addBSTnode(tree,15);
+    addBSTnode(tree,11);
+    addBSTnode(tree,20);
+    addBSTnode(tree,7);
+    addBSTnode(tree,12);
+    addBSTnode(tree,19);
+    addBSTnode(tree,30);
+    addBSTnode(tree,8);
+    BSTnode * finded = findBSTnode(tree,20);
+    BSTnode * removed = getBSTnode(tree,finded);
     double c = 0, s = 0;
     cout << "ilosc z przedzialu [a,b] to " << countInterval(tree,5,12) << endl;
     cout << "suma wartosci wezlow w drzewie to " << sumBST(tree) << endl;

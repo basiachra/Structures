@@ -7,3 +7,4 @@
 // Given a BST and a valid range od keys, remove
 //nodes from BST that have keys outside the valid
 // range
+//zmodyfikowana funkcja delete, więc bajlando
