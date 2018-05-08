@@ -3,5 +3,5 @@ project(Structures)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCE_FILES Exam/2014_2013.cpp)
+set(SOURCE_FILES Find&Union/NumberOfIslands.cpp)
 add_executable(Structures ${SOURCE_FILES})
