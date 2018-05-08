@@ -141,47 +141,32 @@ void printBST(BSTnode * root){
 }
 
 //https://www.geeksforgeeks.org/binary-search-tree-set-2-delete/
-BSTnode* deleteBSTnode(BSTnode* root, int value)
-{
-    // base case
+BSTnode* deleteBSTnode(BSTnode* root, int value){
+
     if (root == NULL) return root;
 
-    // If the value to be deleted is smaller than the root's value,
-    // then it lies in left subtree
     if (value < root->value)
         root->left = deleteBSTnode(root->left, value);
 
-        // If the value to be deleted is greater than the root's value,
-        // then it lies in right subtree
     else if (value > root->value)
         root->right = deleteBSTnode(root->right, value);
 
-        // if value is same as root's value, then This is the node
-        // to be deleted
-    else
-    {
-        // node with only one child or no child
-        if (root->left == NULL)
-        {
+    else{
+
+        if (root->left == NULL){
             BSTnode *temp = root->right;
             free(root);
             return temp;
         }
-        else if (root->right == NULL)
-        {
+        else if (root->right == NULL){
             BSTnode *temp = root->left;
             free(root);
             return temp;
         }
 
-        // node with two children: Get the inorder successor (smallest
-        // in the right subtree)
         BSTnode* temp = getMinNode(root->right);
-
-        // Copy the inorder successor's content to this node
         root->value = temp->value;
 
-        // Delete the inorder successor
         root->right = deleteBSTnode(root->right, temp->value);
     }
     return root;
@@ -205,5 +190,6 @@ int main(){
     cout << "suma wartosci wezlow w drzewie to " << sumBST(tree) << endl;
     cout << "ilosc wezlow w drzewie to " << nodesAmount(tree) << endl;
     cout << "srednia wartosc wezla to " << avarge2(tree,c,s) << endl;
+    cout<< "succ "<<prev(findBSTnode(tree,7))->value<<endl;
     printBST(tree);
 }

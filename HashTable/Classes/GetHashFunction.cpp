@@ -2,7 +2,7 @@
 // Created by Karolina on 03.05.2018.
 //
 
-#include "stdafx.h"
+//#include "stdafx.h"
 #include <iostream>
 using namespace std;
 
@@ -15,7 +15,7 @@ char* firstname;
 char* lastname;
 int age;
 };
-__________
+//__________
 
 int hash(Data * x)
 {
