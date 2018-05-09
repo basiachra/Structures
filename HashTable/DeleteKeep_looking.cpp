@@ -37,10 +37,10 @@ int find(HT *ht, int key){
     while(ht->size>i){
         if(ht->status[l]==1) return -1;
         if(ht->status[l]==3 && ht->table[l]==key) return l;
-        if(ht->status[l]==2) {
+
             l = (l + 1) % ht->size;
             i++;
-        }
+
     }
 }
 void deleted(HT *ht, int key){
@@ -54,21 +54,27 @@ void deleted(HT *ht, int key){
 }
 void fix(HT* ht,int ind){
 
-    if(ind==ht->size-1) return;
     int i=ind+1;
     while(ht->size>i){
-        int p=gethash(ht,ht->table[i]);
-       if(ind>=p) {
-            ht->table[ind] = ht->table[i];
-            ht->status[ind]=3;
-            ht->status[i]=2;
-            ht->table[i]=-1;
+           int p = gethash(ht, ht->table[i]);
+            if (ind >= p && ht->status[i]==3) {
+                ht->table[ind] = ht->table[i];
+                ht->status[ind] = 3;
+                ht->status[i] = 2;
+                ht->table[i] = -1;
+                for (int i = 0; i < ht->size; i++) {
+                    //  if(ht->status[i]==2) cout<<"nie działa"<<endl;
+                    cout << ht->table[i] << " ";
+                }
+                cout << endl;
+                ind = i;
+                i++;
+            }
+            else i++;
 
-         ind=i;
-           i++;
         }
-        else i++;
-    }
+        cout<<"ind: "<<ind<<" "<<"i: "<<i<<endl;
+
     ht->status[ind]=1;
 
     return;
@@ -109,7 +115,8 @@ int main() {
 
     }
     deleted(ht,1);
-   // deleted(ht,12);
+    //cout<<find(ht,12)<<endl;
+    deleted(ht,12);
     cout<<endl;
     deleteKeep(ht);
     for (int i = 0; i < ht->size; i++) {
