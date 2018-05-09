@@ -55,28 +55,20 @@ void deleted(HT *ht, int key){
 void fix(HT* ht,int ind){
 
     int i=ind+1;
-    while(ht->size>i){
-           int p = gethash(ht, ht->table[i]);
-            if (ind >= p && ht->status[i]==3) {
-                ht->table[ind] = ht->table[i];
-                ht->status[ind] = 3;
-                ht->status[i] = 2;
-                ht->table[i] = -1;
-                for (int i = 0; i < ht->size; i++) {
-                    //  if(ht->status[i]==2) cout<<"nie działa"<<endl;
-                    cout << ht->table[i] << " ";
-                }
-                cout << endl;
-                ind = i;
-                i++;
-            }
-            else i++;
+    while(ht->size>i) {
+        int p = gethash(ht, ht->table[i]);
+        if (ind >= p && ht->status[i] == 3) {
+            ht->table[ind] = ht->table[i];
+            ht->status[ind] = 3;
+            ht->status[i] = 2;
+            ht->table[i] = -1;
 
-        }
-        cout<<"ind: "<<ind<<" "<<"i: "<<i<<endl;
 
-    ht->status[ind]=1;
+            ind = i;
+            i++;
+        } else i++;
 
+    }
     return;
 
 }
