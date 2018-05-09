@@ -30,48 +30,60 @@ int getHash(int val,int size){
     return val%size;
 }
 //nie działa i nie wiem jak to zrobić
-void insertnew(HT *ht, int key, int oldindeks, bool dosko[]){
+void insertGoodnew(HT *ht, int key, int oldindeks, bool dosko[]){
     int l=getHash(key,ht->size);
     if(ht->table[l]==-1) {
         ht->table[l]=key;
         cout<<"Dodano "<<key<<endl;
         ht->table[oldindeks]=-1;
-        dosko[l]=true;
-    }
-    else if(!dosko[l]){
-
-        cout<<"Doskonałość zaburzona"<<endl;
-        cout<<l<<" "<<ht->size<<" "<<oldindeks<<endl;
-
-        //przeniosimy na koniec tam gdzie jest miejsce
-        swap(ht->table[l],ht->table[oldindeks]);
         dosko[oldindeks]=true;
     }
 }
 
-void insert(HT *ht, int key,int ind){
-    int l=ind;
-    if(ht->table[l]==-1) {
-        ht->table[l]=key;
-        cout<<"Dodano "<<key<<endl;
-    }
+void insert(HT *ht, int key){
 
+    int l=getHash(key,ht->size);
+
+        int i=0;
+        while(ht->size>i) {
+            if (ht->table[l] == -1) {
+                ht->table[l] = key;
+                return;
+            }
+
+            l = (l + 1) % ht->size;
+            i++;
+        }
 }
-void enlarge(HT* ht){
-    int newsize=2*ht->size;
-    ht->size=newsize;
+void enlarge(HT* &htold) {
+    int newsize = 2 * htold->size;
+    HT *ht=new HT;
+    ht->size = newsize;
     bool dosko[ht->size];
-    for(int i=0;i<ht->size;i++) {
-        dosko[i]=false;
+    for (int i = 0; i < ht->size; i++) {
+        dosko[i] = false;
     }
-    for(int i=ht->size/2;i<ht->size;i++)
+    for (int i = 0; i < ht->size; i++)
         ht->table[i] = -1;
-    for(int j=0;j<ht->size;j++)
-        for(int i=0;i<ht->size;i++){
-        insertnew(ht,ht->table[i],i,dosko);
-    }
-}
 
+    for (int i = 0; i < htold->size; i++) {
+        insertGoodnew(ht, htold->table[i], i, dosko);
+    }
+
+    for (int i = 0; i < htold->size; i++)
+        if(!dosko[i])
+            insert(ht, htold->table[i]);
+
+    htold=ht;
+
+}
+void insertnormal(HT *ht, int key,int ind){
+    int l=ind;
+    if(ht->table[l]!=-1) return;
+    if(ht->table[l]==-1)
+        ht->table[l]=key;
+
+}
 
 
 int main() {
@@ -85,11 +97,11 @@ int main() {
     for (int i = 0; i < ht->size; i++) {
         ht->table[i] = -1;
     }
-    insert(ht,5,0);
-    insert(ht,3,1);
-    insert(ht,1,2);
-    insert(ht,1,3);
-    insert(ht,2,4);
+    insertnormal(ht,5,0);
+    insertnormal(ht,3,1);
+    insertnormal(ht,1,2);
+    insertnormal(ht,1,3);
+    insertnormal(ht,2,4);
     for (int i = 0; i < ht->size; i++) {
         cout<<ht->table[i]<<endl;
     }
